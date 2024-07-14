@@ -27,7 +27,7 @@ class _StartScreenState extends State<StartScreen> {
     );
 
     if (result == null) {
-      var snackBar = SnackbarUtil.getSimpleSnackBar(
+      var snackBar = SnackBarUtil.getSimpleSnackBar(
         'I need a file ".iry" to work!',
         "Ok",
       );

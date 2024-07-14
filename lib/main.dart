@@ -15,6 +15,7 @@ class MainApp extends StatelessWidget {
     Get.put(FileController());
 
     return GetMaterialApp(
+      title: "deairy",
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: const StartScreen(),

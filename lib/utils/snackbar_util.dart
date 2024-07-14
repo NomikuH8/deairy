@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SnackbarUtil {
+class SnackBarUtil {
   static SnackBar getSimpleSnackBar(String text, String buttonText,
       {void Function()? onTap}) {
     var snackBar = SnackBar(
