@@ -1,4 +1,5 @@
-import 'package:deairy/screens/home_screen.dart';
+import 'package:deairy/controllers/file_controller.dart';
+import 'package:deairy/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,12 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(FileController());
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData.dark(),
-      home: const Scaffold(
-        body: HomeScreen(),
-      ),
+      theme: ThemeData.dark(),
+      home: const StartScreen(),
     );
   }
 }
