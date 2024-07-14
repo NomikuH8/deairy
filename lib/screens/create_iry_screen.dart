@@ -1,3 +1,5 @@
+import 'package:deairy/constants/app_constraints.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class CreateIryScreen extends StatefulWidget {
@@ -13,18 +15,27 @@ class _CreateIryScreenState extends State<CreateIryScreen> {
   final _passwordField = TextEditingController();
   final _pathField = TextEditingController();
 
+  void searchFilePath(BuildContext context) async {
+    var result = await FilePicker.platform.saveFile(
+      dialogTitle: "Select a place to put the iry file",
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Create new Iry"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                constraints: const BoxConstraints(
+                  maxWidth: AppConstraints.maxWidth,
+                ),
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
@@ -50,6 +61,9 @@ class _CreateIryScreenState extends State<CreateIryScreen> {
                     ),
                     TextField(
                       controller: _passwordField,
+                      autocorrect: false,
+                      enableSuggestions: false,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         label: Text("Password"),
@@ -64,6 +78,7 @@ class _CreateIryScreenState extends State<CreateIryScreen> {
                         Expanded(
                           child: TextField(
                             controller: _pathField,
+                            readOnly: true,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               label: Text("Path"),
@@ -74,7 +89,7 @@ class _CreateIryScreenState extends State<CreateIryScreen> {
                           width: 10,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => searchFilePath(context),
                           child: const Text("Search"),
                         )
                       ],
@@ -83,21 +98,24 @@ class _CreateIryScreenState extends State<CreateIryScreen> {
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Create"),
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              constraints: const BoxConstraints(
+                maxWidth: AppConstraints.maxWidth,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("Create"),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
